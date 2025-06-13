@@ -1,0 +1,50 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- דף הבית -->
+  <url>
+    <loc>https://upperfloor.ai/</loc>
+    <lastmod>2025-06-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- סקשן: חזון -->
+  <url>
+    <loc>https://upperfloor.ai/vision</loc>
+    <lastmod>2025-06-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- סקשן: שלבים -->
+  <url>
+    <loc>https://upperfloor.ai/stages</loc>
+    <lastmod>2025-06-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- סקשן: תוצאות -->
+  <url>
+    <loc>https://upperfloor.ai/results</loc>
+    <lastmod>2025-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- סקשן: אודות -->
+  <url>
+    <loc>https://upperfloor.ai/about</loc>
+    <lastmod>2025-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- סקשן: צור קשר -->
+  <url>
+    <loc>https://upperfloor.ai/contact</loc>
+    <lastmod>2025-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>
+
