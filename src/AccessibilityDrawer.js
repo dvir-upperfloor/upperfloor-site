@@ -1,20 +1,35 @@
 import React, { useState, useEffect } from 'react';
 
-const AccessibilityDrawer = ({ open, onClose }) => {
-  const [fontSize, setFontSize] = useState(100);
-  const [wordSpacing, setWordSpacing] = useState(0);
-  const [letterSpacing, setLetterSpacing] = useState(0);
-  const [visualMode, setVisualMode] = useState('normal'); // 'normal', 'dark', 'high-contrast', 'inverted', 'black-white'
-  const [isBigCursor, setIsBigCursor] = useState(false);
-  const [isReadingGuide, setIsReadingGuide] = useState(false);
-  const [isStopAnimations, setIsStopAnimations] = useState(false);
-  const [isUnderlineLinks, setIsUnderlineLinks] = useState(false);
-  const [isHighlightHeaders, setIsHighlightHeaders] = useState(false);
-  const [isReadableFont, setIsReadableFont] = useState(false);
-  const [isHideImages, setIsHideImages] = useState(false);
-  const [isDarkBigCursor, setIsDarkBigCursor] = useState(false);
+const AccessibilityDrawer = ({ open, onClose, settings, onSettingsChange }) => {
+  // FIXED: Use props instead of internal state, but keep the same names for compatibility
+  const fontSize = settings.fontSize;
+  const wordSpacing = settings.wordSpacing;
+  const letterSpacing = settings.letterSpacing;
+  const visualMode = settings.visualMode;
+  const isBigCursor = settings.isBigCursor;
+  const isReadingGuide = settings.isReadingGuide;
+  const isStopAnimations = settings.isStopAnimations;
+  const isUnderlineLinks = settings.isUnderlineLinks;
+  const isHighlightHeaders = settings.isHighlightHeaders;
+  const isReadableFont = settings.isReadableFont;
+  const isHideImages = settings.isHideImages;
+  const isDarkBigCursor = settings.isDarkBigCursor;
 
-  // Add/remove class to body when drawer opens/closes
+  // Helper functions to update settings
+  const setFontSize = (value) => onSettingsChange({ fontSize: value });
+  const setWordSpacing = (value) => onSettingsChange({ wordSpacing: value });
+  const setLetterSpacing = (value) => onSettingsChange({ letterSpacing: value });
+  const setVisualMode = (value) => onSettingsChange({ visualMode: value });
+  const setIsBigCursor = (value) => onSettingsChange({ isBigCursor: value });
+  const setIsReadingGuide = (value) => onSettingsChange({ isReadingGuide: value });
+  const setIsStopAnimations = (value) => onSettingsChange({ isStopAnimations: value });
+  const setIsUnderlineLinks = (value) => onSettingsChange({ isUnderlineLinks: value });
+  const setIsHighlightHeaders = (value) => onSettingsChange({ isHighlightHeaders: value });
+  const setIsReadableFont = (value) => onSettingsChange({ isReadableFont: value });
+  const setIsHideImages = (value) => onSettingsChange({ isHideImages: value });
+  const setIsDarkBigCursor = (value) => onSettingsChange({ isDarkBigCursor: value });
+
+  // FIXED: Add/remove class to body when drawer opens/closes - updated for RIGHT side
   useEffect(() => {
     const accessibilityBtn = document.querySelector('.accessibility-btn');
     
@@ -40,75 +55,6 @@ const AccessibilityDrawer = ({ open, onClose }) => {
   }, [open]);
 
   useEffect(() => {
-    // Apply accessibility settings to the document
-    const body = document.body;
-    const html = document.documentElement;
-
-    // Font size
-    html.style.fontSize = `${fontSize}%`;
-
-    // Word spacing - apply to all elements
-    if (wordSpacing > 0) {
-      const style = document.getElementById('accessibility-word-spacing') || document.createElement('style');
-      style.id = 'accessibility-word-spacing';
-      style.innerHTML = `
-        * {
-          word-spacing: ${wordSpacing * 0.2}em !important;
-        }
-      `;
-      if (!document.getElementById('accessibility-word-spacing')) {
-        document.head.appendChild(style);
-      }
-    } else {
-      const style = document.getElementById('accessibility-word-spacing');
-      if (style) {
-        style.remove();
-      }
-    }
-
-    // Letter spacing
-    if (letterSpacing > 0) {
-      body.style.letterSpacing = `${letterSpacing * 0.05}em`;
-    } else {
-      body.style.letterSpacing = '';
-    }
-
-    // Visual modes - remove all first
-    body.classList.remove('dark-mode', 'high-contrast', 'inverted-contrast', 'black-white');
-    
-    // Apply selected visual mode
-    switch(visualMode) {
-      case 'dark':
-        body.classList.add('dark-mode');
-        break;
-      case 'high-contrast':
-        body.classList.add('high-contrast');
-        break;
-      case 'inverted':
-        body.classList.add('inverted-contrast');
-        break;
-      case 'black-white':
-        body.classList.add('black-white');
-        break;
-      default:
-        // normal mode - no classes added
-        break;
-    }
-
-    // Big cursor (white)
-    if (isBigCursor) {
-      body.classList.add('big-cursor');
-    } else {
-      body.classList.remove('big-cursor');
-    }
-
-    // Dark big cursor
-    if (isDarkBigCursor) {
-      body.classList.add('dark-big-cursor');
-    } else {
-      body.classList.remove('dark-big-cursor');
-    }
-
     // UPDATED: Stop animations with proper CSS targeting including background
     if (isStopAnimations) {
       const stopAnimationsStyle = document.getElementById('stop-animations-style') || document.createElement('style');
@@ -129,7 +75,9 @@ const AccessibilityDrawer = ({ open, onClose }) => {
         .floating-element,
         .dust-particles,
         .rising-droplet,
-        .rising-droplet-simple {
+        .rising-droplet-simple,
+        .floating-particle,
+        .floating-particles {
           display: none !important;
           visibility: hidden !important;
           opacity: 0 !important;
@@ -175,7 +123,8 @@ const AccessibilityDrawer = ({ open, onClose }) => {
         }
         
         /* Ensure background is pure black without any effects */
-        .background-gradient {
+        .background-gradient,
+        .new-background {
           background: #000000 !important;
           animation: none !important;
           transition: none !important;
@@ -189,7 +138,7 @@ const AccessibilityDrawer = ({ open, onClose }) => {
         
         /* Keep accessibility drawer transitions working */
         .accessibility-drawer {
-          transition: left 0.3s ease-in-out !important;
+          transition: right 0.3s ease-in-out !important;
         }
         
         .accessibility-drawer.open {
@@ -206,11 +155,8 @@ const AccessibilityDrawer = ({ open, onClose }) => {
         document.head.appendChild(stopAnimationsStyle);
       }
       
-      // Also add class to body for additional control and stop GSAP animations
-      body.classList.add('animations-stopped');
-      
       // Kill all GSAP animations on background elements AND stage graphics
-      const backgroundElements = document.querySelectorAll('.dynamic-light, .water-particle, .water-shimmer, .rising-droplet, .rising-droplet-simple, .floating-element');
+      const backgroundElements = document.querySelectorAll('.dynamic-light, .water-particle, .water-shimmer, .rising-droplet, .rising-droplet-simple, .floating-element, .floating-particle, .floating-particles');
       const stageElements = document.querySelectorAll('.identify-graphic, .educate-graphic, .develop-graphic, .identify-circle, .identify-inner, .edu-circle, .dev-square');
       
       [...backgroundElements, ...stageElements].forEach(element => {
@@ -228,12 +174,12 @@ const AccessibilityDrawer = ({ open, onClose }) => {
       const statNumbers = document.querySelectorAll('.stat-number');
       statNumbers.forEach(statElement => {
         const originalText = statElement.textContent;
-        if (originalText.includes('M+')) {
-          statElement.textContent = '17M+';
-        } else if (originalText.includes('435')) {
-          statElement.textContent = '435+';
-        } else if (originalText.includes('55')) {
-          statElement.textContent = '55+';
+        if (originalText.includes('934')) {
+          statElement.textContent = '934';
+        } else if (originalText.includes('35')) {
+          statElement.textContent = '35';
+        } else if (originalText.includes('284')) {
+          statElement.textContent = '284';
         }
       });
       
@@ -242,41 +188,12 @@ const AccessibilityDrawer = ({ open, onClose }) => {
       if (stopAnimationsStyle) {
         stopAnimationsStyle.remove();
       }
-      body.classList.remove('animations-stopped');
       
       // Re-show background elements when animations are re-enabled
-      const backgroundElements = document.querySelectorAll('.dynamic-light, .water-particle, .water-shimmer, .rising-droplet, .rising-droplet-simple, .floating-element');
+      const backgroundElements = document.querySelectorAll('.dynamic-light, .water-particle, .water-shimmer, .rising-droplet, .rising-droplet-simple, .floating-element, .floating-particle, .floating-particles');
       backgroundElements.forEach(element => {
         element.style.display = '';
       });
-    }
-
-    // Underline links
-    if (isUnderlineLinks) {
-      body.classList.add('underline-links');
-    } else {
-      body.classList.remove('underline-links');
-    }
-
-    // Highlight Headers
-    if (isHighlightHeaders) {
-      body.classList.add('highlight-headers');
-    } else {
-      body.classList.remove('highlight-headers');
-    }
-
-    // Readable Font
-    if (isReadableFont) {
-      body.classList.add('readable-font');
-    } else {
-      body.classList.remove('readable-font');
-    }
-
-    // Hide Images
-    if (isHideImages) {
-      body.classList.add('hide-images');
-    } else {
-      body.classList.remove('hide-images');
     }
 
     // Reading guide
@@ -288,22 +205,14 @@ const AccessibilityDrawer = ({ open, onClose }) => {
 
     // Cleanup on unmount
     return () => {
-      html.style.fontSize = '';
-      body.style.letterSpacing = '';
-      body.classList.remove('dark-mode', 'high-contrast', 'inverted-contrast', 'black-white', 'big-cursor', 'dark-big-cursor', 'underline-links', 'highlight-headers', 'readable-font', 'hide-images', 'animations-stopped');
       removeReadingGuide();
-      // Remove word spacing style
-      const wordSpacingStyle = document.getElementById('accessibility-word-spacing');
-      if (wordSpacingStyle) {
-        wordSpacingStyle.remove();
-      }
       // Remove stop animations style
       const stopAnimationsStyle = document.getElementById('stop-animations-style');
       if (stopAnimationsStyle) {
         stopAnimationsStyle.remove();
       }
     };
-  }, [fontSize, wordSpacing, letterSpacing, visualMode, isBigCursor, isDarkBigCursor, isStopAnimations, isUnderlineLinks, isHighlightHeaders, isReadableFont, isHideImages, isReadingGuide]);
+  }, [isStopAnimations, isReadingGuide]);
 
   const createReadingGuide = () => {
   // Remove existing guide
@@ -345,18 +254,20 @@ const AccessibilityDrawer = ({ open, onClose }) => {
 };
 
   const resetSettings = () => {
-    setFontSize(100);
-    setWordSpacing(0);
-    setLetterSpacing(0);
-    setVisualMode('normal');
-    setIsBigCursor(false);
-    setIsDarkBigCursor(false);
-    setIsReadingGuide(false);
-    setIsStopAnimations(false);
-    setIsUnderlineLinks(false);
-    setIsHighlightHeaders(false);
-    setIsReadableFont(false);
-    setIsHideImages(false);
+    onSettingsChange({
+      fontSize: 100,
+      wordSpacing: 0,
+      letterSpacing: 0,
+      visualMode: 'normal',
+      isBigCursor: false,
+      isDarkBigCursor: false,
+      isReadingGuide: false,
+      isStopAnimations: false,
+      isUnderlineLinks: false,
+      isHighlightHeaders: false,
+      isReadableFont: false,
+      isHideImages: false
+    });
     
     // REMOVED: No longer automatically removing focus from reset button
   };
