@@ -132,13 +132,15 @@ textarea:focus {
 .nav-left {
     display: flex;
     align-items: center;
+    height: 100%;
 }
 
 .nav-right {
     display: flex;
-    align-items: flex-end;
-    flex-direction: column;
-    gap: 0.5rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.25rem;
+    height: 100%;
 }
 
 .logo {
@@ -192,7 +194,7 @@ textarea:focus {
 }
 
 .contact-btn-positioned {
-    margin-top: 5.5rem;
+    margin-top: 0;
 }
 
 /* Hamburger Button */

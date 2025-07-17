@@ -1171,7 +1171,7 @@ const UpperFloor = () => {
               אנחנו מובילים את המהפכה בתעשיות
               <span className="rotating-text" aria-live="polite" aria-atomic="true">
                 <span>נדל"ן</span>
-                <span>ייעוץ פיננסי</span>
+                <span>ביטוח ופיננסים</span>
                 <span>קמעונאות</span>
                 <span>כושר ותזונה</span>
                 <span>אירועים</span>
@@ -1214,7 +1214,7 @@ const UpperFloor = () => {
           <div className="stage-content" id="identify-content">
             <h2 className="stage-title">זהות עסקית</h2>
             <p className="stage-description">
-              אנחנו מנתחים את פעילויות העסק שלך, מזהים הזדמנויות בעלות השפעה גבוהה ומעצבים יחד את עובדי ה-AI המתאימים ביותר לחזון העסקי שלך.
+              אנחנו מנתחים את הפעילויות והתהליכים בעסק שלך, מזהים בעיות שמונעות צמיחה, בעלות השפעה גבוהה ומעצבים יחד את עובדי ה-AI המתאימים ביותר לחזון העסקי שלך.
             </p>
           </div>
           {!isMobile && (
@@ -1287,10 +1287,10 @@ const UpperFloor = () => {
         {/* Contact Section */}
         <section className="contact-section" id="contact">
           <h2 className="contact-title">
-            אנחנו מצפים לעזור <span className="highlight">לעסק שלך</span>
+            מוכנים  <span className="highlight">לעלות קומה?</span>
           </h2>
           <div className="contact-info">
-            <a className="contact-email" href="mailto:info@upperfloor.ai" aria-label="שלח אימייל ל-Upper Floor">info@upperfloor.ai</a>
+            <a className="contact-email" href="mailto:team@upperfloor.ai" aria-label="שלח אימייל ל-Upper Floor">team@upperfloor.ai</a>
           </div>
           <div className="contact-buttons">
             <button className="contact-btn" onClick={handleOpenContactDrawer} aria-label="פתח טופס יצירת קשר">
@@ -1316,7 +1316,7 @@ const UpperFloor = () => {
         <div className="privacy-links">
           <a href="/terms.html" target="_blank" rel="noopener noreferrer">תנאים והגבלות</a>
           <a href="/privacy.html" target="_blank" rel="noopener noreferrer">מדיניות פרטיות</a>
-          <a href="/privacy.html" target="_blank" rel="noopener noreferrer">הצהרת נגישות</a>
+          <a href="/accessibility.html" target="_blank" rel="noopener noreferrer">הצהרת נגישות</a>
         </div>
       </footer>
     </>

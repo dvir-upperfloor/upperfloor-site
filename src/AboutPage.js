@@ -144,7 +144,7 @@ const AboutPage = ({ onNavigateBack }) => {
             <div className="mission-card">
               <h3 className="mission-title">המשימה שלנו</h3>
               <blockquote className="mission-quote">
-                "השאלה היא לא אם תטמיעו סוכנים, אלא מתי ובאיזו איכות."
+                "השאלה היא לא אם תטמיעו בינה מלאכותית, אלא מתי ובאיזו איכות."
               </blockquote>
               <p className="mission-description">
                 אנחנו מאמינים שהעתיד השייך לעסקים שיודעים לנצל את כוח הבינה המלאכותית בצורה חכמה ויעילה. 
@@ -157,22 +157,18 @@ const AboutPage = ({ onNavigateBack }) => {
             <h3 className="values-title">הערכים שלנו</h3>
             <div className="values-grid">
               <div className="value-item">
-                <div className="value-icon">🎯</div>
                 <h4 className="value-name">מיקוד בתוצאות</h4>
                 <p className="value-description">כל פתרון שאנו מפתחים מיועד להביא תוצאות מדידות ומשמעותיות לעסק שלכם.</p>
               </div>
               <div className="value-item">
-                <div className="value-icon">🔧</div>
                 <h4 className="value-name">התאמה אישית</h4>
                 <p className="value-description">אין פתרון אחד שמתאים לכולם. כל עסק מקבל פתרון מותאם במיוחד עבורו.</p>
               </div>
               <div className="value-item">
-                <div className="value-icon">🚀</div>
                 <h4 className="value-name">חדשנות מתמדת</h4>
                 <p className="value-description">אנחנו תמיד בחזית הטכנולוגיה, מביאים לכם את הפתרונות המתקדמים ביותר.</p>
               </div>
               <div className="value-item">
-                <div className="value-icon">🤝</div>
                 <h4 className="value-name">שותפות אמיתית</h4>
                 <p className="value-description">אנחנו לא רק ספקי שירות - אנחנו שותפים לדרך לצמיחה והצלחה של העסק שלכם.</p>
               </div>
